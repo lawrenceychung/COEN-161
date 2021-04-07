@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Binary Search Tree</title>
+</head>
+<body>
+	<script type="text/javascript" src="http://students.engr.scu.edu/~adiaztos/resources/testBst.js"></script>
+	<script>
+		// Implement a Binary Search Tree using JS Constructors and Pro
+
+		class Node{											//create a Node Class
+			constructor (val){			
+				this.left = null;							//holds the left child
+				this.right = null;							//holds the right child
+				this.val = val;								//holds the value of the node
+			}
+		}
+
+		class BinarySearchTree{								//create the BST class
+			constructor(){
+				this.root = null;							//set root to null to start
+			}
+			
+			
+			insert(val){									//insert new node method
+				let newNode = new Node(val);				//create a new node with the given value
+
+				if(this.root === null){						//if the is no root
+					this.root = newNode;					//set this value as the root
+					return;
+				}
+				
+				let current = this.root;			
+				while(current.val !== val){					//if the number given is not different than whats in the BST already
+					if(val < current.val){					//if value is less than current value
+						if(current.left === null){			//store val in the left child
+							current.left = newNode;
+							return;
+						}
+						else{
+							current = current.left;
+						}
+						
+					}
+					else{
+						if(current.right === null){	 		//if its not equal to or less than, the value must be greater than
+							current.right = newNode; 		//sorte value in the right child
+							return this;
+						}
+						else{
+							current = current.right;
+						}
+					}
+				}
+			}
+			
+			inOrderHelper(node, fn) {						//helper function for inorder method
+				if (node !== null) {
+					this.inOrderHelper(node.left, fn);		//recursivly calls itself and gets the values of the nodes
+					fn(node.val);
+					this.inOrderHelper(node.right, fn);
+				}
+			}
+
+			inorder(fn){									//inorder method
+				let current = this.root;					//finds the root
+				this.inOrderHelper(current, fn);			//calls helper function 
+				return;
+			}
+			
+			search(val){									//search method
+
+				let current = this.root;
+				let found = false;							//initialize found to false to start
+				while(current && !found){
+					if(val < current.val){					//checks if the value is less than the value at a node
+						current = current.left;
+					}
+					else if(val > current.val){				//checks if the value is more than the value at a node
+						current = current.right;
+					}
+					else{
+						found = current;					//checks if the value is equal to the value at a node = found the value
+					}
+				}
+				
+				if(!found){
+					return undefined;
+				}
+				return found;
+			}
+		}
+		// Uncomment this line to test your complete BST - make sure to pass a BST object created with the new keyword 
+		let bst = new BinarySearchTree();
+		testBst(bst);
+	</script>
+</body>
+</html>
