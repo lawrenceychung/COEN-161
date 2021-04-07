@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lab 5 - Part 3</title>
+</head>
+<body>
+	<button id="btn0">Button 1!</button>
+	<button id="btn1">Button 2!</button>
+	<button id="btn2">Button 3!</button>
+
+	<script>
+		let btnNum;
+		for (btnNum = 0; btnNum < 3; btnNum++){
+			(function(btnNum){
+				document.getElementById('btn' + btnNum).onclick = function() {
+			// alert the message
+				alert("I am button " + (btnNum + 1) + "!");
+				};
+			})(btnNum);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lab 5 - Part 1</title>
+	<style>
+		p[id] {
+			height: 100px;
+		}
+
+		.flashy {
+		  animation: blinker 1s linear infinite;
+		}
+
+		@keyframes blinker {  
+		  50% { opacity: 0; }
+		}
+	</style>
+</head>
+<body>
+	<label>My Input: <input type="text" id="myInput"></label><button type="button">Submit</button>
+	<p>All UpperCase</p>
+	<hr>
+	<p id="allUpper"></p>
+	<p>All Lowercase</p>
+	<hr>
+	<p id="allLower"></p>
+	<p>Red Text</p>
+	<hr>
+	<p id="redText"></p>
+	<p>Flashy Text</p>
+	<hr>
+	<p id="flashyText"></p>
+	<script>
+		// Your code goes here
+		document.querySelector("button").addEventListener("click", appendText)
+		function appendText(){
+			document.getElementById("allUpper").innerHTML += document.getElementById("myInput").value.toUpperCase();
+			document.getElementById("allLower").innerHTML += document.getElementById("myInput").value.toLowerCase();
+			document.getElementById("redText").innerHTML += document.getElementById("myInput").value.fontcolor("red");
+			document.getElementById("flashyText").innerHTML += document.getElementById("myInput").value;
+			document.getElementById("flashyText").classList.add("flashy")
+		}
+		
+	</script>
+</body>
+</html>
